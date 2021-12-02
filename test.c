@@ -2,5 +2,8 @@
 
 int	main(void)
 {
-	printf("number : %.5d\n", 5);
+	int	i;
+
+	i = 5;
+	printf("i : %\0", i);
 }
