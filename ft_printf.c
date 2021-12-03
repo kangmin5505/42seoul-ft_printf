@@ -6,24 +6,34 @@
 /*   By: kangkim <kangkim@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 12:52:33 by kangkim           #+#    #+#             */
-/*   Updated: 2021/12/02 19:54:30 by kangkim          ###   ########.fr       */
+/*   Updated: 2021/12/03 17:46:51 by kangkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	print_arg(va_list ap, t_info *fmt_info)
+int	print_arg(va_list ap, t_info *fmt_info)
 {
-	char	*s;
+	char	type;
+	int		cnt;
 
-	s = va_arg(ap, char *);
-	printf("arg : %s\n", s);
+	type = fmt_info->type;
+	cnt = 0;
+	if (type == 'c' || type == 's')
+		cnt = print_character(ap, fmt_info);
+	else if (type == 'p')
+		cnt = print_pointer(ap, fmt_info);
+	else if (type == 'd' || type == 'i' || type == 'u')
+		cnt = print_decimal(ap, fmt_info);
+	else if (type == 'x' || type == 'X')
+		cnt = print_hexa(ap, fmt_info);
+	else if (type == '%')
+		cnt = print_percent(fmt_info);
+	return (cnt);
 }
 
-int	parse_specifier(const char **fmt, t_info *fmt_info)
+void	parse_specifier(const char **fmt, t_info *fmt_info)
 {
-	int	cnt;
-
 	if (ft_strchr(FLAGS, **fmt) != NULL)
 		parse_flags(&(*fmt), fmt_info);
 	if (ft_isdigit(**fmt) == 1)
@@ -31,8 +41,7 @@ int	parse_specifier(const char **fmt, t_info *fmt_info)
 	if (**fmt == '.')
 		parse_precision(&(*fmt), fmt_info);
 	if (ft_strchr(TYPES, **fmt) != NULL)
-		cnt = parse_types(*fmt, fmt_info);
-	return (cnt);
+		parse_types(*fmt, fmt_info);
 }
 
 int	parse_fmt(va_list ap, const char *fmt)
@@ -52,8 +61,8 @@ int	parse_fmt(va_list ap, const char *fmt)
 			if (fmt_info == NULL)
 				return (0);
 			init_fmt_info(fmt_info);
-			cnt += parse_specifier(&fmt, fmt_info);
-			print_arg(ap, fmt_info);
+			parse_specifier(&fmt, fmt_info);
+			cnt += print_arg(ap, fmt_info);
 			free(fmt_info);
 			fmt_info = NULL;
 		}
