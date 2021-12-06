@@ -6,7 +6,7 @@
 /*   By: kangkim <kangkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 12:20:45 by kangkim           #+#    #+#             */
-/*   Updated: 2021/12/06 14:27:49 by kangkim          ###   ########.fr       */
+/*   Updated: 2021/12/06 23:03:54 by kangkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	print_spaceozero_str(t_info *fmt_info, int str_len, char *str)
 	cnt = 0;
 	width = fmt_info->width;
 	prec = fmt_info->precision;
-	while (width > prec)
+	while (width > prec && width > 0)
 	{
 		cnt += ft_putchar((int)' ');
 		width--;

@@ -6,7 +6,7 @@
 /*   By: kangkim <kangkim@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 12:55:25 by kangkim           #+#    #+#             */
-/*   Updated: 2021/12/06 17:44:47 by kangkim          ###   ########.fr       */
+/*   Updated: 2021/12/06 22:53:33 by kangkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdarg.h>
-/* delete library */
-# include <stdio.h>
 
 # define FLAGS "-0# +"
 # define TYPES "cspdiuxX%"
@@ -31,32 +29,32 @@ typedef struct s_info
 	int		nbr_space_sign;
 	int		nbr_plus_sign;
 	int		precision;
-	int		nbr_base;
 	int		width;
 	char	type;
 }	t_info;
 
 /* ft_printf function */
 int		ft_printf(const char *fmt, ...);
-int		parse_fmt(va_list ap, const char *fmt);
+int		parse_fmt(va_list *ap, const char *fmt);
 void	parse_specifier(const char **fmt, t_info *fmt_info);
-int		print_arg(va_list ap, t_info *fmt_info);
+int		print_arg(va_list *ap, t_info *fmt_info);
 
 /* parse_specifier_detail function */
 void	parse_flags(const char **_dp_fmt, t_info *fmt_info);
 void	parse_width(const char **dp_fmt, t_info *fmt_info);
 void	parse_precision(const char **dp_fmt, t_info *fmt_info);
 void	parse_types(const char *fmt, t_info *fmt_info);
-int		print_arg(va_list ap, t_info *fmt_info);
+int		print_arg(va_list *ap, t_info *fmt_info);
 
 /* print_character function */
-int		print_character(va_list ap, t_info *fmt_info);
+int		print_character(va_list *ap, t_info *fmt_info);
+int		print_c(char c, t_info *fmt_info);
 
 /* print_pointer function */
-int		print_pointer(va_list ap);
+int		print_pointer(va_list *ap);
 
 /* print_number function */
-int		print_number(va_list ap, t_info *fmt_info);
+int		print_number(va_list *ap, t_info *fmt_info);
 int		print_signed_nbr(int nbr, t_info *fmt_info);
 int		print_unsigned_nbr(unsigned int nbr, t_info *fmt_info);
 void	str_toupper(char *str);
@@ -80,7 +78,7 @@ int		ft_strlen(const char *s);
 char	*ft_itoa(int n);
 char	*ft_uitoa(unsigned int n);
 char	*ft_uitoa_base(unsigned int n, int base);
-char	*ft_lltoa_base(long long n, int base);
+char	*ft_ultoa_base(unsigned long n, int base);
 char	ft_toupper(int c);
 
 /* fmt_info function */

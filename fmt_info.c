@@ -6,7 +6,7 @@
 /*   By: kangkim <kangkim@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 18:14:45 by kangkim           #+#    #+#             */
-/*   Updated: 2021/12/02 18:24:55 by kangkim          ###   ########.fr       */
+/*   Updated: 2021/12/06 18:46:50 by kangkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	init_fmt_info(t_info *fmt_info)
 	fmt_info->nbr_space_sign = -1;
 	fmt_info->nbr_plus_sign = -1;
 	fmt_info->precision = -1;
-	fmt_info->nbr_base = 10;
 	fmt_info->width = 0;
 	fmt_info->type = '\0';
 }

@@ -6,7 +6,7 @@
 #    By: kangkim <kangkim@student.42seoul.k>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/03 17:04:19 by kangkim           #+#    #+#              #
-#    Updated: 2021/12/06 17:16:15 by kangkim          ###   ########.fr        #
+#    Updated: 2021/12/06 18:02:59 by kangkim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,8 @@ LIBFT_A = libft.a
 
 all: $(NAME)
 
+bonus : all
+
 $(NAME): $(OBJS)
 	make all -C $(LIBFT_DIR)
 	cp $(LIBFT_DIR)/$(LIBFT_A) ./$(NAME)
@@ -53,4 +55,4 @@ fclean : clean
 
 re : fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all bonus clean fclean re

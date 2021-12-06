@@ -6,7 +6,7 @@
 /*   By: kangkim <kangkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 17:15:35 by kangkim           #+#    #+#             */
-/*   Updated: 2021/12/06 17:44:19 by kangkim          ###   ########.fr       */
+/*   Updated: 2021/12/06 18:43:17 by kangkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	print_signed_nbr(int nbr, t_info *fmt_info)
 	return (cnt);
 }
 
-int	print_number(va_list ap, t_info *fmt_info)
+int	print_number(va_list *ap, t_info *fmt_info)
 {
 	int				cnt;
 	char			type;
@@ -96,12 +96,12 @@ int	print_number(va_list ap, t_info *fmt_info)
 	type = fmt_info->type;
 	if (type == 'd' || type == 'i')
 	{
-		signed_nbr = va_arg(ap, int);
+		signed_nbr = va_arg(*ap, int);
 		cnt += print_signed_nbr(signed_nbr, fmt_info);
 	}
 	else if (type == 'u' || type == 'x' || type == 'X')
 	{
-		unsigned_nbr = va_arg(ap, unsigned int);
+		unsigned_nbr = va_arg(*ap, unsigned int);
 		cnt += print_unsigned_nbr(unsigned_nbr, fmt_info);
 	}
 	return (cnt);

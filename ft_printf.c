@@ -6,13 +6,13 @@
 /*   By: kangkim <kangkim@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 12:52:33 by kangkim           #+#    #+#             */
-/*   Updated: 2021/12/06 17:34:44 by kangkim          ###   ########.fr       */
+/*   Updated: 2021/12/06 18:42:09 by kangkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	print_arg(va_list ap, t_info *fmt_info)
+int	print_arg(va_list *ap, t_info *fmt_info)
 {
 	char	type;
 	int		cnt;
@@ -43,7 +43,7 @@ void	parse_specifier(const char **fmt, t_info *fmt_info)
 		parse_types(*fmt, fmt_info);
 }
 
-int	parse_fmt(va_list ap, const char *fmt)
+int	parse_fmt(va_list *ap, const char *fmt)
 {
 	t_info	*fmt_info;
 	int		cnt;
@@ -76,7 +76,7 @@ int	ft_printf(const char *fmt, ...)
 	int		cnt;
 
 	va_start(ap, fmt);
-	cnt = parse_fmt(ap, fmt);
+	cnt = parse_fmt(&ap, fmt);
 	va_end(ap);
 	return (cnt);
 }
