@@ -6,7 +6,7 @@
 #    By: kangkim <kangkim@student.42seoul.k>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/03 17:04:19 by kangkim           #+#    #+#              #
-#    Updated: 2021/12/03 20:25:23 by kangkim          ###   ########.fr        #
+#    Updated: 2021/12/06 17:16:15 by kangkim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,9 +23,9 @@ SRCS = ft_printf.c 				\
 	parse_specifier_detail.c	\
 	print_character.c			\
 	print_pointer.c				\
-	print_decimal.c				\
-	print_hexa.c				\
+	print_number.c				\
 	print_percent.c				\
+	utils.c						\
 	
 OBJS = $(SRCS:.c=.o)
 

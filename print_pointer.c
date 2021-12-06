@@ -3,23 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   print_pointer.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kangkim <kangkim@student.42seoul.k>        +#+  +:+       +#+        */
+/*   By: kangkim <kangkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/03 18:40:33 by kangkim           #+#    #+#             */
-/*   Updated: 2021/12/03 18:41:07 by kangkim          ###   ########.fr       */
+/*   Created: 2021/12/06 17:19:45 by kangkim           #+#    #+#             */
+/*   Updated: 2021/12/06 17:35:26 by kangkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	print_pointer(va_list ap, t_info *fmt_info)
+int	print_pointer(va_list ap)
 {
-	t_info	*info1;
+	int			cnt;
+	long long	nbr;
+	char		*str;
 
-	if (ap == NULL)
+	cnt = ft_putstr("0x");
+	nbr = va_arg(ap, long long);
+	str = NULL;
+	if (nbr == (long long)NULL)
+		cnt += ft_putchar((int)'0');
+	else
 	{
+		str = ft_lltoa_base(nbr, 16);
+		cnt += ft_putstr(str);
 	}
-	info1 = fmt_info;
-	printf("here is print_pointer function\n");
-	return (0);
+	free(str);
+	return (cnt);
 }

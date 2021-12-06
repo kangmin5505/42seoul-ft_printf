@@ -6,7 +6,7 @@
 /*   By: kangkim <kangkim@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 12:52:33 by kangkim           #+#    #+#             */
-/*   Updated: 2021/12/03 17:46:51 by kangkim          ###   ########.fr       */
+/*   Updated: 2021/12/06 17:34:44 by kangkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,10 @@ int	print_arg(va_list ap, t_info *fmt_info)
 	if (type == 'c' || type == 's')
 		cnt = print_character(ap, fmt_info);
 	else if (type == 'p')
-		cnt = print_pointer(ap, fmt_info);
-	else if (type == 'd' || type == 'i' || type == 'u')
-		cnt = print_decimal(ap, fmt_info);
-	else if (type == 'x' || type == 'X')
-		cnt = print_hexa(ap, fmt_info);
+		cnt = print_pointer(ap);
+	else if (type == 'd' || type == 'i' || type == 'u' \
+			|| type == 'x' || type == 'X')
+		cnt = print_number(ap, fmt_info);
 	else if (type == '%')
 		cnt = print_percent(fmt_info);
 	return (cnt);
