@@ -6,7 +6,7 @@
 /*   By: kangkim <kangkim@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 12:52:33 by kangkim           #+#    #+#             */
-/*   Updated: 2021/12/06 18:42:09 by kangkim          ###   ########.fr       */
+/*   Updated: 2021/12/07 11:42:11 by kangkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	print_arg(va_list *ap, t_info *fmt_info)
 	if (type == 'c' || type == 's')
 		cnt = print_character(ap, fmt_info);
 	else if (type == 'p')
-		cnt = print_pointer(ap);
+		cnt = print_pointer(ap, fmt_info);
 	else if (type == 'd' || type == 'i' || type == 'u' \
 			|| type == 'x' || type == 'X')
 		cnt = print_number(ap, fmt_info);

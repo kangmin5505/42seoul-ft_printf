@@ -6,7 +6,7 @@
 /*   By: kangkim <kangkim@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 12:55:25 by kangkim           #+#    #+#             */
-/*   Updated: 2021/12/06 22:53:33 by kangkim          ###   ########.fr       */
+/*   Updated: 2021/12/07 20:48:36 by kangkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,10 @@ int		print_arg(va_list *ap, t_info *fmt_info);
 /* print_character function */
 int		print_character(va_list *ap, t_info *fmt_info);
 int		print_c(char c, t_info *fmt_info);
+int		print_null_str(t_info *fmt_info);
 
 /* print_pointer function */
-int		print_pointer(va_list *ap);
+int		print_pointer(va_list *ap, t_info *fmt_info);
 
 /* print_number function */
 int		print_number(va_list *ap, t_info *fmt_info);
@@ -68,6 +69,7 @@ int		print_str_left_align(char *str, int str_len, t_info *fmt_info);
 int		print_str_right_align(char *str, int str_len, t_info *fmt_info);
 int		print_spaceozero_str(t_info *fmt_info, int str_len, char *str);
 int		print_str_spaceozero(t_info *fmt_info, int str_len, char *str);
+int		print_sign(char **nbr_str, t_info *fmt_info, int nbr);
 
 /* libft function */
 int		ft_putchar(int c);
@@ -80,6 +82,7 @@ char	*ft_uitoa(unsigned int n);
 char	*ft_uitoa_base(unsigned int n, int base);
 char	*ft_ultoa_base(unsigned long n, int base);
 char	ft_toupper(int c);
+char	*ft_strjoin(char const *s1, char const *s2);
 
 /* fmt_info function */
 void	init_fmt_info(t_info *fmt_info);

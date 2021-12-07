@@ -6,7 +6,7 @@
 /*   By: kangkim <kangkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 17:15:35 by kangkim           #+#    #+#             */
-/*   Updated: 2021/12/06 18:43:17 by kangkim          ###   ########.fr       */
+/*   Updated: 2021/12/07 20:53:59 by kangkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	print_hash(t_info *fmt_info)
 		cnt += ft_putstr("0x");
 	else if (fmt_info->type == 'X')
 		cnt += ft_putstr("0X");
+	fmt_info->width -= 2;
 	return (cnt);
 }
 
@@ -49,7 +50,7 @@ int	print_unsigned_nbr(unsigned int nbr, t_info *fmt_info)
 		nbr_str = ft_uitoa_base(nbr, 16);
 	if (type == 'X')
 		str_toupper(nbr_str);
-	if (fmt_info->nbr_hash == 1)
+	if (fmt_info->nbr_hash == 1 && nbr != 0)
 		cnt += print_hash(fmt_info);
 	str_len = ft_strlen(nbr_str);
 	if (fmt_info->left_align == -1)
@@ -65,23 +66,28 @@ int	print_signed_nbr(int nbr, t_info *fmt_info)
 {
 	int		cnt;
 	char	*nbr_str;
-	int		str_len;
-	char	type;
+	char	*temp;
 
 	cnt = 0;
 	nbr_str = ft_itoa(nbr);
-	str_len = ft_strlen(nbr_str);
-	type = fmt_info->type;
-	if (fmt_info->nbr_plus_sign == 1 && nbr > 0 && type != 'u')
-		cnt += ft_putchar((int)'+');
-	else if (fmt_info->nbr_space_sign == 1 && nbr > 0 && type != 'u')
-		cnt += ft_putchar((int)' ');
+	temp = nbr_str;
+	if (nbr < 0 && fmt_info->width > fmt_info->precision \
+		&& fmt_info->precision != -1 && fmt_info->left_align == -1)
+	{
+		while (fmt_info->width > (fmt_info->precision + 1) && \
+				fmt_info->width > ft_strlen(nbr_str))
+		{
+			cnt += ft_putchar(' ');
+			fmt_info->width -= 1;
+		}
+	}
+	cnt += print_sign(&nbr_str, fmt_info, nbr);
 	if (fmt_info->left_align == -1)
-		cnt += print_str_right_align(nbr_str, str_len, fmt_info);
+		cnt += print_str_right_align(nbr_str, ft_strlen(nbr_str), fmt_info);
 	else
-		cnt += print_str_left_align(nbr_str, str_len, fmt_info);
-	free(nbr_str);
-	nbr_str = NULL;
+		cnt += print_str_left_align(nbr_str, ft_strlen(nbr_str), fmt_info);
+	free(temp);
+	temp = NULL;
 	return (cnt);
 }
 
