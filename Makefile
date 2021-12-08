@@ -6,7 +6,7 @@
 #    By: kangkim <kangkim@student.42seoul.k>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/03 17:04:19 by kangkim           #+#    #+#              #
-#    Updated: 2021/12/06 18:02:59 by kangkim          ###   ########.fr        #
+#    Updated: 2021/12/08 14:48:09 by kangkim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(RMFLAGS) $(OBJS)
 	make clean -C $(LIBFT_DIR)
 
 fclean : clean
