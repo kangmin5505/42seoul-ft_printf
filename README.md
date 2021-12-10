@@ -97,3 +97,12 @@ Your project's Makefile must compile the library by using its Makefile, then com
       - s : null-terminated string.
       - c : char (character).
       - p : void *(pointer to void) in an implementation-defined format.
+
+## What I Learned
+1. variable arguments
+2. 문제 파악의 중요성
+
+ft_printf 과제를 통해 가변인자를 다루는 방법에 대해 학습했다.\
+Mandatory part는 가변 인자에 초점을 맞춰서 과제를 수행했지만, Bonus는 width와 precision의 관계를 확실하게 정립하지 못 해서 분기 처리에 초점을 맞추게 되었다.\
+그래서 그런지 코드가 지져분 해지고, 처음에 작성한 코드에서 너무 많이 바뀌어 버렸다.\
+따라서 다음 과제를 수행할 때는 과제를 진행하기 전에 필요한 사전 지식을 확실하게 학습하고 시작하도록 해야겠다.\
