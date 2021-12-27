@@ -6,9 +6,13 @@
 #    By: kangkim <kangkim@student.42seoul.k>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/03 17:04:19 by kangkim           #+#    #+#              #
-#    Updated: 2021/12/08 14:48:09 by kangkim          ###   ########.fr        #
+#    Updated: 2021/12/27 17:07:54 by kangkim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+# Colors
+_END	=	\033[0;0m
+_GREEN	=	\033[0;32m
 
 NAME = libftprintf.a
 
@@ -38,20 +42,27 @@ all: $(NAME)
 bonus : all
 
 $(NAME): $(OBJS)
-	make all -C $(LIBFT_DIR)
-	cp $(LIBFT_DIR)/$(LIBFT_A) ./$(NAME)
-	$(AR) $(NAME) $(OBJS)
+	@echo "$(_GREEN)[ Try to make $(LIBFT_A) ]$(_END)"
+	@$(MAKE) -s -C $(LIBFT_DIR) all
+	@echo "$(_GREEN)[ Done ]$(_END)"
+	@echo "$(_GREEN)[ Try to make $(NAME) ]$(_END)"
+	@$(AR) $(NAME) $(OBJS) $(LIBFT_DIR)/$(LIBFT_A)
+	@echo "$(_GREEN)[ Done ]$(_END)"
 
 .c.o:
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(RMFLAGS) $(OBJS)
-	make clean -C $(LIBFT_DIR)
+	@echo "$(_GREEN)[ Try to clean ]$(_END)" 
+	@$(RM) $(RMFLAGS) $(OBJS)
+	@make -s -C $(LIBFT_DIR) clean 
+	@echo "$(_GREEN)[ Done ]$(_END)"
 
 fclean : clean
-	$(RM) $(RMFLAGS) $(NAME)
-	make fclean -C $(LIBFT_DIR)
+	@echo "$(_GREEN)[ Try to fclean ]$(_END)"
+	@$(RM) $(RMFLAGS) $(NAME)
+	@make -s -C $(LIBFT_DIR) fclean
+	@echo "$(_GREEN)[ Done ]$(_END)"
 
 re : fclean all
 
